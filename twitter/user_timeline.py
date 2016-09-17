@@ -8,6 +8,7 @@ try:
     #use screen name(str) or user id(int)
     user_id=None#430228469
     # tuo = TwitterUserOrder(user_id) 
+    # user_name='Ye__Wang'
     user_name='BarackObama'
     # user_name='HillaryClinton'
     # user_name='realDonaldTrump'
@@ -29,14 +30,16 @@ try:
     count=0
     for tweet in ts.search_tweets_iterable(tuo):
         print( '%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
-        result.append(tweet['text'])
+        result.append(tweet['text']+'\n')
         count+=1
     print count
     if user_id:
-        with codecs.open(os.path.join('./result', 'Timeline_'+str(user_id)+'.json'), 'w', 'utf-8') as f:
-            json.dump(result, f, indent=4)
+        with codecs.open(os.path.join('./result', 'Timeline_'+str(user_id)+'.txt'), 'w', 'utf-8') as f:
+            # json.dump(result, f, indent=4)
+            f.writelines(result)
     elif user_name:
-        with codecs.open(os.path.join('./result', 'Timeline_'+user_name+'.json'), 'w', 'utf-8') as f:
-            json.dump(result, f, indent=4)
+        with codecs.open(os.path.join('./result', 'Timeline_'+user_name+'.txt'), 'w', 'utf-8') as f:
+            # json.dump(result, f, indent=4)
+            f.writelines(result)
 except TwitterSearchException as e: # catch all those ugly errors
     print(e)

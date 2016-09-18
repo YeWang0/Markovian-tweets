@@ -2,6 +2,7 @@
 import json
 import codecs
 import os
+from result_handler import *
 from TwitterSearch import *
 
 try:
@@ -28,9 +29,12 @@ try:
     # start asking Twitter about the timeline
     result=[]
     count=0
+    text=''
     for tweet in ts.search_tweets_iterable(tuo):
         print( '%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
-        result.append(tweet['text']+'\n')
+        # text=url_remove(tweet['text'])
+        text=tweet_cleanup(tweet['text'])
+        result.append(text+'\n')
         count+=1
     print count
     if user_id:

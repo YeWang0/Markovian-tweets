@@ -64,7 +64,7 @@ void splitContent(string file_content){
     bool isBegin = true;
     for(auto &c:file_content){
         //if space or punc, the word is finished
-        if((c == ' ' || punc.find(c)<punc.size()-1) && !tempWord.empty()){
+        if((c == ' ' || punc.find(c)<punc.size()) && !tempWord.empty()){
             if(isBegin){
                 beginWords.push_back(tempWord);
                 isBegin = false;
@@ -72,7 +72,7 @@ void splitContent(string file_content){
             if(tempWord!=" "){
                 wordList.push_back(tempWord);
             }
-            if (punc.find(c)<punc.size()-1){
+            if (punc.find(c)<punc.size()){
                 string r(1,c);
                 wordList.push_back(r);
                 priviousPunc = r;

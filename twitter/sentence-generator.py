@@ -87,6 +87,7 @@ def buildMapping(wordlist, markovLength):
         total = sum(followset.values())
         # Normalizing here:
         mapping[first] = dict([(k, v / total) for k, v in followset.iteritems()])
+    print tempMapping
 
 # Returns the next word in the sentence (chosen randomly),
 # given the previous ones.
@@ -133,7 +134,7 @@ def main():
         markovLength = int(sys.argv [2])
 
     buildMapping(wordlist(filename), markovLength)
-    print genSentence(markovLength)
-
+    # print genSentence(markovLength)
+    # print wordlist(filename)
 if __name__ == "__main__":
     main()

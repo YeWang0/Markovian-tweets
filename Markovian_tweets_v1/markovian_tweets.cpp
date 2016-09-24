@@ -22,10 +22,10 @@ int main(int argc, const char * argv[]) {
     string file_path = "/Users/Yan/GoogleDrive/0000000Fall2016/ELEG676/project1_Markov/"+file_name;
     string file_content = read_txt(file_path);
     split_content(file_content);
-    void printWordList();
+//    printWordList();
     
     build_mapping(markovLength);
-    void printMapping();
+//    printMapping();
     
     cout << generate_sentence(markovLength)<<endl;
     

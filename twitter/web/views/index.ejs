@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <script data-require="jquery@2.2.4" data-semver="2.2.4" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script data-require="bootstrap.js@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="style.css" />-->
+    <style type="text/css">
+    	h1{
+		    text-align: center;
+		}
+    </style>
+  </head>
+
+  <body class="container">
+    <h1>Markovian Tweets!</h1>
+	  <div class="row" >
+		  <div class="col-lg-12">
+		    <div class="input-group">
+		      <span class="input-group-addon" id="sizing-addon2">Twitter username</span>
+		      <input type="text" class="form-control" placeholder="Search for..." id = "username">
+		      <span class="input-group-btn">
+		       <button class="btn btn-success" type="button" id = "generate">Generate</button>
+		      </span>
+		  <!--    <div class="dropdown">-->
+				<!--  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+				<!--    Generate-->
+				<!--    <span class="caret"></span>-->
+				<!--  </button>-->
+				<!--  <ul id = "generate" class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+				<!--    <li><a href="">: 1</a></li>-->
+				<!--    <li><a href="">Markov Chain Length: 2</a></li>-->
+				<!--    <li><a href="">Markov Chain Length: 3</a></li>-->
+				<!--  </ul>-->
+				<!--</div>-->
+				
+		    </div><!-- /input-group -->
+		  </div><!-- /.col-lg-12 -->
+	  </div>
+	  <br/>
+	  <div class="row">
+	       <span class="input-group-btn col-lg-6">
+		       <select class="btn btn-default dropdown-toggle" type="button" id = "chain_len">
+                  <option value="">Markov Chain Length</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="3">4</option>
+                  <option value="3">5</option>
+               </select>
+		      </span>
+	  </div>
+	  </br>
+	  <div class="well" id = "well"><%-sentence%></div>
+	  
+	  
+	  <script type="text/javascript" >
+	  
+	  	$("#generate").click(function(){
+	  		var chain_len = $("#chain_len").val();
+	        var username = $("#username").val();
+	        var url = "/"+username +"/"+chain_len;
+	        alert(url);
+	        $.get(url,function(res){
+	            console.log(res);
+	        })
+	        
+	  		window.location.href = url;
+
+	  	})
+	  </script>
+  </body>
+
+</html>

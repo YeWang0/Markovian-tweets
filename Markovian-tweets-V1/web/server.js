@@ -17,57 +17,32 @@ const exec = require('child_process').exec;
 
 
 app.get('/', function (req, res) {
-//   res.send(markov);
-//   res.sendFile(path.join(__dirname + '/index.html'));
-//render index.ejs file
-    res.render('index', {sentence : ''});
+    res.render('index', {sentence : '', username : ''});
 
 })
 
 app.get('/:username/:len', function(req, res){
-  var username = req.params.username;
-  var length = req.params.len;
-  console.log(username+length);
-
-  exec('python '+exefile+' '+username+' '+length, (error, stdout, stderr) => {
-    if (error) {
-    console.error(`exec error: ${error}`);
-    return;
-    }
+    var username = req.params.username;
+    var length = req.params.len;
+    console.log(username+length);
+  
+    exec('python '+exefile+' '+username+' '+length, (error, stdout, stderr) => {
+      if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+      }
     
     markov=`${stdout}`;
     console.log(markov);
-     res.render('index', {sentence : markov});
-     console.log(markov);
-    //  res.send({sentence : 'markov'});
+    // res.render('index', {sentence : markov});
+    res.render('index', {sentence : markov, username : username});
     });
 })
 
 
-// var generateSentence = function(length){
-//     var markov;
-//     exec('python'+ ' ' +exefile+' '+filename+' '+length, (error, stdout, stderr) => {
-//     if (error) {
-//     console.error(`exec error: ${error}`);
-//     return;
-//     }
- 
-//     markov=`${stdout}`;
-//     console.log("generat:" + markov);
-// 	return markov;
-        
-//     });
-//     // while(true){
-//     //     if(markov!=null)
-//     //         return markov;
-//     // }
-    
-	
-// }
 
 var server = app.listen(8081, function () {
   
   console.log(`node start...`);
-  // console.log(`stderr: ${stderr}`);
 
 })

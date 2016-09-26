@@ -11,15 +11,12 @@ if __name__ == '__main__':
         sys.exit(1)
         
     user_name = sys.argv[1]
-    markovLength = 1
+    markovLength = 2
     if len (sys.argv) == 3:
         markovLength = int(sys.argv [2])
 
     # print user_name,markovLength
-    result=''
-    result+= '<hr />'
-    result+= '<h4>Log:</h4>'
-    result+= '<hr />'
+
     cpp_path='../cpp/'
     # user_name='Ye__Wang'
     # user_name='BarackObama'
@@ -28,7 +25,7 @@ if __name__ == '__main__':
 
     filename='Timeline_'+user_name+'.txt'
     
-    
+    result=''
     if not os.path.isfile('../result/'+filename):
         result+= ' getting user timeline...'
         result+=  '<hr />'
@@ -65,5 +62,6 @@ if __name__ == '__main__':
         print "<h4>User name: "+user_name+"</h4>"
         print "<h4>Auto Tweet: "+output+"</h4>"
         print "</div>"
-
-    print result
+        print '<br />'
+        print '<hr />'
+    

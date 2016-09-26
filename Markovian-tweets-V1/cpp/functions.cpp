@@ -178,6 +178,7 @@ void build_mapping(int markovLength){
         add_item_to_mapping(history, follow);
         history.clear();
     }
+    update_mapping();
 }
 
 void add_item_to_mapping(list<string> histroy,string word){

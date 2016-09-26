@@ -3,7 +3,8 @@ import sys
 import ctypes
 import subprocess
 import os.path
-
+import codecs
+import datetime
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
@@ -25,35 +26,36 @@ if __name__ == '__main__':
 
     filename='Timeline_'+user_name+'.txt'
     
-    result=''
+    result=datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')+'\n'
     if not os.path.isfile('../result/'+filename):
         result+= ' getting user timeline...'
-        result+=  '<hr />'
+        result+='\n'
         result+=  " new file created..."
-        result+=  '<hr />'
+        result+='\n'
         #create user timeline file in /result
         # example: /result/Timeline_BarackObama.txt
         get_user_timeline_by_name(user_name)
         
     if not os.path.isfile('./a.out'):
         result+=  ' compiling cpp...'
-        result+=  '<hr />'
         # compile markcovian maping code
         bashCommand='g++ -std=c++11 '+cpp_path+'markovian_tweets.cpp '+cpp_path+'functions.cpp'
         result+=  bashCommand
-        result+=  '<hr />'
         subprocess.Popen(bashCommand.split(),stdout=subprocess.PIPE,stderr=subprocess.PIPE).communicate()
     
-    result+=  ' building map...'
-    result+=  '<hr />'
+    result+=' building map...'
+    result+='\n'
     # execute markcovian maping code
     bashCommand='./a.out ../result/'+filename+' '+str(markovLength)
     result+=  bashCommand
-    result+=  '<hr />'
+    result+='\n'
     process = subprocess.Popen(bashCommand.split(),stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     output, error = process.communicate()
     result+=  ' getting output...'
-    result+=  '<hr />'
+    result+='\n'
+    result+=user_name+" : "+output
+    result+=datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')+'\n\n'
+
     if not output:
         print "<h2>Invalid twitter name</h2>"
     else:      
@@ -64,4 +66,10 @@ if __name__ == '__main__':
         print "</div>"
         print '<br />'
         print '<hr />'
+try:
+    with codecs.open(os.path.join('../log', 'log.txt'), 'a','utf-8') as f:
+                    f.write(result)
+except:
+    pass
+
     

@@ -14,6 +14,6 @@ Consume a text file with sentences and produce a tweet (&lt; 145 characters) wit
 
 ##Run:
     
-    1.cd path/to/web
-    2.node server.js
+    1. cd path/to/web
+    2. node server.js OR ./run.sh
     

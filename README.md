@@ -11,7 +11,8 @@ Consume a text file with sentences and produce a tweet (&lt; 145 characters) wit
 ##Setup:
     pip install twittersearch 
     npm install express --save
-
+    npm install ejs
+    
 ##Run:
     
     1. cd path/to/web

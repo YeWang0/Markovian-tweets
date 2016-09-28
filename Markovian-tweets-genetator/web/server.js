@@ -4,11 +4,9 @@ var path = require('path');
 var http = require("http");
 var ejs = require("ejs");
 
-
+var server = http.createServer(app);
 app.set('view engine', 'ejs');  //tell Express we're using EJS
 app.set('views', __dirname + '/views');  //set path to *.ejs files
-
-
 
 var markov;
 var exefile='../python/main.py';
@@ -40,9 +38,7 @@ app.get('/:username/:len', function(req, res){
 })
 
 
-
-var server = app.listen(8081, function () {
-  
-  console.log(`node start...`);
-
-})
+server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+  var addr = server.address();
+  console.log("Markovian Chain hosting at:", addr.address + ":" + addr.port);
+});

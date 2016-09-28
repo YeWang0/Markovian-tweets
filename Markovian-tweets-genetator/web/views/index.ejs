@@ -65,7 +65,12 @@
 	        
 			window.location.href = url;
 
-	  	})
+	  	});
+	  	$("#username").keyup(function(event){
+    		if(event.keyCode == 13){
+        		$("#generate").click();
+    		}
+    	});
 	  </script>
   </body>
 

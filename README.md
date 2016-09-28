@@ -6,14 +6,15 @@ Consume a text file with sentences and produce a tweet (&lt; 145 characters) wit
     node.js
     express
     python2
-    
+    twittersearch
+ 
 ##Setup:
-    
+    pip install twittersearch 
     npm install express --save
-
+    npm install ejs
+    
 ##Run:
     
-    1.node sentence-generator.js
-    2.go to 'localhost:8081'
-    3.Fresh web page to get a new sentence
+    1. cd path/to/web
+    2. node server.js OR ./run.sh
     
